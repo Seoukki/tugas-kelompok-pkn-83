@@ -1,0 +1,12 @@
+{
+  "name": "Kuis Battle Indonesia",
+  "short_name": "KuisBattle",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#FFFBF0",
+  "theme_color": "#DC2626",
+  "icons": [
+    {"src":"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇮🇩</text></svg>","sizes":"512x512","type":"image/svg+xml"}
+  ]
+}
