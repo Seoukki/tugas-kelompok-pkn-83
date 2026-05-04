@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,minimum-scale=1,viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#DC2626">
+<title>Kuis Battle 🇮🇩</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══ HOME ═══ -->
+<div id="s-home" class="screen active">
+  <canvas id="home-particles" class="home-canvas"></canvas>
+  <div class="home-inner">
+    <div class="home-garuda"><canvas id="garuda-cv" width="110" height="100"></canvas></div>
+    <h1 class="home-title">KUIS<br>BATTLE</h1>
+    <p class="home-sub">🇮🇩 Game Kuis Interaktif · Kelompok 4 🇮🇩</p>
+    <div class="home-btns">
+      <button class="btn btn-hero" onclick="App.go('s-info')">🚀 Mulai Bermain</button>
+      <div class="home-row2">
+        <button class="btn btn-outline" onclick="App.go('s-about')">📖 Tentang Game</button>
+        <button class="btn btn-outline" id="snd-btn" onclick="App.toggleSound()">🔊 Suara</button>
+        <button class="btn btn-outline" id="resume-btn" onclick="App.tryResume()" style="display:none">▶ Lanjutkan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TENTANG GAME ═══ -->
+<div id="s-about" class="screen">
+  <button class="back-btn" onclick="App.go('s-home')">← Beranda</button>
+  <div class="about-wrap">
+    <div class="about-tabs">
+      <button class="atab active" onclick="App.switchTab(0)">📖 Cara Main</button>
+      <button class="atab" onclick="App.switchTab(1)">⚙️ Pembuatan</button>
+      <button class="atab" onclick="App.switchTab(2)">📋 Daftar Soal</button>
+    </div>
+    <div class="about-panels">
+      <!-- TAB 0: Cara Main -->
+      <div class="about-panel active" id="tab-0">
+        <div class="about-scroll">
+          <div class="rule-section">
+            <div class="rule-title">⚔️ Mode 1 — Rebut Bendera (2 Pemain)</div>
+            <ul class="rule-list">
+              <li>Layar dibagi 2 — Kiri (Merah) vs Kanan (Biru)</li>
+              <li>Karakter bergerak maju setiap jawaban <b>BENAR</b></li>
+              <li>Yang pertama merebut bendera di tengah = <b>MENANG</b></li>
+              <li>Waktu 70 detik per pemain. Benar <span class="rl-ok">−3 dtk</span>, Salah <span class="rl-err">−5 dtk</span></li>
+              <li>Soal salah masuk antrian ulang sampai dijawab benar</li>
+            </ul>
+          </div>
+          <div class="rule-section">
+            <div class="rule-title">🤝 Mode 2 — Tim Battle (Maks 20/Tim)</div>
+            <ul class="rule-list">
+              <li>2 Tim bersaing — Tim Merah (kiri) vs Tim Biru (kanan)</li>
+              <li>Peserta bergantian menjawab soal dalam tim masing-masing</li>
+              <li>Wakil tim bergerak ke bendera setiap jawaban benar</li>
+              <li>Suporter menonton & bersemangat di pinggir lapangan</li>
+              <li>Setup: masukkan nama Tim Merah dulu → Siap → Tim Biru</li>
+            </ul>
+          </div>
+          <div class="rule-section">
+            <div class="rule-title">☕ Cozy Mode — Solo Santai</div>
+            <ul class="rule-list">
+              <li>Untuk 1 pemain, tanpa batas waktu sama sekali</li>
+              <li>Jawab 20 soal sambil belajar dengan santai</li>
+              <li>Karakter berjalan santai setiap jawaban benar</li>
+              <li>Cocok untuk belajar mandiri tanpa tekanan</li>
+            </ul>
+          </div>
+          <div class="rule-section">
+            <div class="rule-title">🎵 Sistem Suara</div>
+            <ul class="rule-list">
+              <li>Musik latar (musik.mp3) dimainkan di lobi</li>
+              <li>Efek suara otomatis mengecilkan musik (ducking)</li>
+              <li>Toggle suara tersedia di beranda</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- TAB 1: Pembuatan -->
+      <div class="about-panel" id="tab-1">
+        <div class="about-scroll">
+          <div class="rule-section">
+            <div class="rule-title">🛠️ Cara Pembuatan Game</div>
+            <ul class="rule-list">
+              <li><b>Teknologi:</b> HTML5, CSS3, JavaScript murni (vanilla JS) — tanpa library/framework</li>
+              <li><b>Canvas API:</b> Arena permainan digambar dengan HTML Canvas untuk animasi 60fps</li>
+              <li><b>Web Audio API:</b> Efek suara & musik dibuat langsung dari oscillator + ducking</li>
+              <li><b>PWA:</b> Progressive Web App — bisa diinstal & fullscreen di HP</li>
+              <li><b>Responsive:</b> Mendukung portrait/landscape, HP, tablet, dan TV</li>
+            </ul>
+          </div>
+          <div class="rule-section">
+            <div class="rule-title">⚙️ Fitur Teknis</div>
+            <ul class="rule-list">
+              <li>Animasi karakter 60fps dengan requestAnimationFrame</li>
+              <li>Physics fall — karakter jatuh dramatis saat kalah</li>
+              <li>Karakter manusia realistis dengan kulit, rambut, ekspresi</li>
+              <li>Sistem timer independen untuk setiap pemain/tim</li>
+              <li>Auto-save state untuk fitur Resume</li>
+              <li>Batik pattern sebagai dekorasi latar belakang</li>
+            </ul>
+          </div>
+          <div class="rule-section">
+            <div class="rule-title">👥 Tim Pengembang</div>
+            <ul class="rule-list">
+              <li>Kelompok 4 — Kelas Informatika</li>
+              <li>Dibuat untuk keperluan pembelajaran interaktif</li>
+              <li>Guru: Bapak/Ibu Informatika SMP</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- TAB 2: Daftar Soal -->
+      <div class="about-panel" id="tab-2">
+        <div class="about-scroll" id="about-qlist"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ INFO ═══ -->
+<div id="s-info" class="screen">
+  <button class="back-btn" onclick="App.go('s-home')">← Kembali</button>
+  <div class="split-screen">
+    <div class="split-pane sp-red">
+      <div class="sp-hd">👥 Anggota Kelompok 4</div>
+      <ul class="mlist">
+        <li><span class="mn">1</span>Nama Anggota 1</li>
+        <li><span class="mn">2</span>Nama Anggota 2</li>
+        <li><span class="mn">3</span>Nama Anggota 3</li>
+        <li><span class="mn">4</span>Nama Anggota 4</li>
+        <li><span class="mn">5</span>Nama Anggota 5</li>
+      </ul>
+    </div>
+    <div class="split-div"></div>
+    <div class="split-pane sp-wh">
+      <div class="sp-hd">🎯 Tujuan Pembelajaran</div>
+      <p class="sp-body">Meningkatkan pemahaman siswa terhadap <b>Pengetahuan Umum Indonesia</b> melalui permainan kuis interaktif yang kompetitif dan menyenangkan. Melatih kecepatan berpikir serta ketepatan menjawab.</p>
+      <div class="tag-row">
+        <span class="tag">🗺️ Geografi</span><span class="tag">🏛️ Sejarah</span>
+        <span class="tag">🎭 Budaya</span><span class="tag">🌿 Alam</span>
+      </div>
+      <button class="btn btn-red" style="margin-top:auto" onclick="App.go('s-mode')">Pilih Mode →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODE ═══ -->
+<div id="s-mode" class="screen">
+  <button class="back-btn" onclick="App.go('s-info')">← Kembali</button>
+  <div class="mode-wrap">
+    <h2 class="sec-title">Pilih Mode</h2>
+    <p class="sec-sub">Pilih mode permainan yang sesuai</p>
+    <div class="mode-cards">
+      <div class="mcard mcard-1" onclick="App.selectMode(1)">
+        <div class="mc-ico">⚔️</div>
+        <div class="mc-bdg">MODE 1</div>
+        <div class="mc-title">Rebut Bendera</div>
+        <div class="mc-sub">2 Pemain Individu</div>
+        <div class="mc-desc">Karakter berlomba merebut bendera! Jawab benar → maju!</div>
+      </div>
+      <div class="mcard mcard-2" onclick="App.selectMode(2)">
+        <div class="mc-ico">🤝</div>
+        <div class="mc-bdg">MODE 2</div>
+        <div class="mc-title">Tim Battle</div>
+        <div class="mc-sub">2 Tim · Maks 20 Peserta</div>
+        <div class="mc-desc">Tim berlomba merebut bendera bersama. Suporter menyemangati!</div>
+      </div>
+      <div class="mcard mcard-3" onclick="App.selectMode(3)">
+        <div class="mc-ico">☕</div>
+        <div class="mc-bdg mc-bdg-c">COZY</div>
+        <div class="mc-title">Cozy Mode</div>
+        <div class="mc-sub">Solo · Tanpa Waktu</div>
+        <div class="mc-desc">Belajar santai tanpa tekanan! Karakter berjalan maju pelan.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CARA MAIN ═══ -->
+<div id="s-howto" class="screen">
+  <button class="back-btn" onclick="App.go('s-mode')">← Kembali</button>
+  <div class="howto-wrap">
+    <div class="howto-hd">
+      <div class="hw-badge" id="hw-badge">MODE 1</div>
+      <h2 class="hw-title" id="hw-title">Rebut Bendera</h2>
+      <p class="hw-sub" id="hw-sub">2 Pemain Individu</p>
+    </div>
+    <div class="hw-steps" id="hw-steps"></div>
+    <button class="btn btn-red hw-go" onclick="App.go('s-setup')">Siap! Masukkan Nama →</button>
+  </div>
+</div>
+
+<!-- ═══ SETUP ═══ -->
+<div id="s-setup" class="screen">
+  <button class="back-btn" onclick="App.go('s-howto')">← Kembali</button>
+  <div id="setup-stage" class="split-screen"></div>
+  <button class="btn btn-start" id="setup-go" onclick="App.setupAction()">⚔ MASUK ARENA!</button>
+</div>
+
+<!-- ═══ COUNTDOWN ═══ -->
+<div id="s-countdown" class="screen s-cd">
+  <div class="cd-ring r1"></div><div class="cd-ring r2"></div><div class="cd-ring r3"></div>
+  <p class="cd-top">BERSIAP!</p>
+  <div class="cd-num" id="cdn">3</div>
+  <p class="cd-bot">🇮🇩 Semangat Bertanding!</p>
+</div>
+
+<!-- ═══ GAME ═══ -->
+<div id="s-game" class="screen s-game">
+  <div class="arena-header" id="arena-header"></div>
+  <div class="arena-wrap" id="arena-wrap"><canvas id="arena-cv"></canvas></div>
+  <div class="gpanels" id="gpanels">
+    <div class="gpanel" id="gp-left">
+      <div class="pflash" id="pfl-left"></div>
+      <div class="gph" id="gph-left"></div>
+      <div class="gt-row"><div class="gt-bar"><div class="gt-fill" id="gtf-left"></div></div><div class="gt-sec" id="gts-left">70s</div></div>
+      <div class="gqbox" id="gq-left">Memuat soal…</div>
+      <div class="gopts" id="go-left"></div>
+    </div>
+    <div class="gsep"></div>
+    <div class="gpanel" id="gp-right">
+      <div class="pflash" id="pfl-right"></div>
+      <div class="gph" id="gph-right"></div>
+      <div class="gt-row"><div class="gt-bar"><div class="gt-fill" id="gtf-right"></div></div><div class="gt-sec" id="gts-right">70s</div></div>
+      <div class="gqbox" id="gq-right">Memuat soal…</div>
+      <div class="gopts" id="go-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ COZY GAME ═══ -->
+<div id="s-cozy" class="screen s-game">
+  <div class="arena-header" id="cozy-header"></div>
+  <div class="arena-wrap" id="cozy-wrap"><canvas id="cozy-cv"></canvas></div>
+  <div class="cozy-qa">
+    <div class="gph" id="gph-cozy"></div>
+    <div class="gqbox" id="gq-cozy" style="min-height:clamp(44px,9vh,72px);font-size:clamp(.82rem,1.65vw,1.02rem)">Memuat soal…</div>
+    <div class="gopts cozy-opts" id="go-cozy"></div>
+  </div>
+</div>
+
+<!-- ═══ WINNER ═══ -->
+<div id="s-winner" class="screen s-winner">
+  <canvas id="cf-cv"></canvas>
+  <div class="win-body">
+    <div class="win-trophy">🏆</div>
+    <div class="win-lbl">PEMENANG!</div>
+    <div class="win-name" id="win-name">—</div>
+    <div class="win-sub">LUAR BIASA! 🎉</div>
+    <div class="win-scores" id="win-scores"></div>
+    <div class="win-btns">
+      <button class="btn btn-red" onclick="App.goQList()">📋 Daftar Soal</button>
+      <button class="btn btn-outline-dark" onclick="App.goHome()">🏠 Beranda</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ QLIST ═══ -->
+<div id="s-qlist" class="screen s-qlist">
+  <div class="ql-hd">
+    <h2 class="ql-title">📋 Daftar Soal & Penjelasan</h2>
+    <p class="ql-sub" id="ql-sub">Ringkasan permainan</p>
+  </div>
+  <div class="ql-scroll" id="ql-scroll"></div>
+  <div class="ql-footer">
+    <button class="btn btn-red" onclick="App.goHome()">🏠 Beranda</button>
+    <button class="btn btn-outline-dark" onclick="App.rematch()">🔄 Main Lagi</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
