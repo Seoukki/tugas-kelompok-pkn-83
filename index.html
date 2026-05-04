@@ -6,191 +6,206 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#DC2626">
+<meta name="theme-color" content="#F97316">
 <title>Kuis Battle 🇮🇩</title>
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- HOME -->
+<!-- ═══ HOME ═══ -->
 <div id="s-home" class="screen active">
-  <div class="home-wrap">
-    <canvas id="home-canvas" class="home-canvas"></canvas>
-    <div class="home-content">
-      <div class="home-logo-wrap"><div id="home-garuda" class="home-garuda"></div></div>
-      <h1 class="home-title">KUIS<br>BATTLE</h1>
-      <p class="home-tagline">🇮🇩 Game Kuis Interaktif &bull; Kelompok 4 🇮🇩</p>
-      <div class="home-btns">
-        <button class="btn btn-hero" onclick="App.go('s-info')">Mulai Bermain</button>
-        <button class="btn btn-glass" onclick="App.toggleSound()" id="snd-btn">🔊 Suara Aktif</button>
+  <canvas id="home-particles"></canvas>
+  <div class="home-inner">
+    <div class="home-garuda-wrap"><canvas id="garuda-canvas" width="120" height="110"></canvas></div>
+    <h1 class="home-title">KUIS<br><span class="title-accent">BATTLE</span></h1>
+    <p class="home-sub">🇮🇩 Game Kuis Interaktif &bull; Kelompok 4 🇮🇩</p>
+    <div class="home-btns">
+      <button class="btn btn-hero" onclick="App.go('s-info')">🚀 Mulai Bermain</button>
+      <div class="home-row2">
+        <button class="btn btn-glass" onclick="App.go('s-howto-info')">📖 Panduan</button>
+        <button class="btn btn-glass" id="snd-btn" onclick="App.toggleSound()">🔊 Suara</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- INFO -->
+<!-- ═══ INFO ═══ -->
 <div id="s-info" class="screen">
-  <button class="back-btn" onclick="App.go('s-home')">&#8592; Kembali</button>
-  <div class="split-screen">
-    <div class="split-pane pane-red">
-      <div class="pane-header"><span class="ph-icon">👥</span><span>Anggota Kelompok 4</span></div>
-      <ul class="member-list">
-        <li><span class="mn r">1</span>Nama Anggota 1</li>
-        <li><span class="mn r">2</span>Nama Anggota 2</li>
-        <li><span class="mn r">3</span>Nama Anggota 3</li>
-        <li><span class="mn r">4</span>Nama Anggota 4</li>
-        <li><span class="mn r">5</span>Nama Anggota 5</li>
+  <button class="back-btn" onclick="App.go('s-home')">← Kembali</button>
+  <div class="two-col">
+    <div class="tcol tcol-orange">
+      <div class="tcol-hd"><span>👥</span>Anggota Kelompok 4</div>
+      <ul class="mlist">
+        <li><span class="mnum orng">1</span>Nama Anggota 1</li>
+        <li><span class="mnum orng">2</span>Nama Anggota 2</li>
+        <li><span class="mnum orng">3</span>Nama Anggota 3</li>
+        <li><span class="mnum orng">4</span>Nama Anggota 4</li>
+        <li><span class="mnum orng">5</span>Nama Anggota 5</li>
       </ul>
     </div>
-    <div class="split-sep"></div>
-    <div class="split-pane pane-grn">
-      <div class="pane-header"><span class="ph-icon">🎯</span><span>Tujuan Pembelajaran</span></div>
-      <p class="info-body">Meningkatkan pemahaman siswa terhadap <strong>Pengetahuan Umum Indonesia</strong> melalui permainan kuis interaktif yang kompetitif dan menyenangkan. Melatih kecepatan berpikir, kerja sama tim, serta ketepatan menjawab soal dalam suasana bersaing yang sehat dan sportif.</p>
+    <div class="col-sep"></div>
+    <div class="tcol tcol-navy">
+      <div class="tcol-hd"><span>🎯</span>Tujuan Pembelajaran</div>
+      <p class="tcol-body">Meningkatkan pemahaman siswa terhadap <b>Pengetahuan Umum Indonesia</b> melalui permainan kuis interaktif yang kompetitif dan menyenangkan.</p>
       <div class="tag-row">
-        <span class="tag">🗺️ Geografi</span><span class="tag">🏛️ Sejarah</span><span class="tag">🎭 Budaya</span><span class="tag">🌿 Alam</span>
+        <span class="tag">🗺️ Geografi</span><span class="tag">🏛️ Sejarah</span>
+        <span class="tag">🎭 Budaya</span><span class="tag">🌿 Alam</span>
       </div>
-      <button class="btn btn-primary" style="margin-top:auto" onclick="App.go('s-mode')">Pilih Mode Game &#8594;</button>
+      <button class="btn btn-primary" style="margin-top:auto" onclick="App.go('s-mode')">Pilih Mode →</button>
     </div>
   </div>
 </div>
 
-<!-- MODE SELECT -->
+<!-- ═══ MODE SELECT ═══ -->
 <div id="s-mode" class="screen">
-  <button class="back-btn" onclick="App.go('s-info')">&#8592; Kembali</button>
-  <div class="mode-screen-inner">
-    <div class="mode-heading-wrap">
-      <h2 class="section-title">Pilih Mode Permainan</h2>
-      <p class="section-sub">Klik mode untuk melihat cara bermain</p>
-    </div>
+  <button class="back-btn" onclick="App.go('s-info')">← Kembali</button>
+  <div class="mode-wrap">
+    <div class="mode-heading"><h2 class="sec-title">Pilih Mode</h2><p class="sec-sub">Tiga mode tersedia — pilih sesuai seleramu!</p></div>
     <div class="mode-cards">
-      <div class="mode-card mc-red" onclick="App.selectMode(1)">
-        <div class="mc-illustration">
-          <svg viewBox="0 0 120 80" fill="none">
-            <ellipse cx="30" cy="75" rx="16" ry="4" fill="rgba(0,0,0,.2)"/>
-            <ellipse cx="90" cy="75" rx="16" ry="4" fill="rgba(0,0,0,.2)"/>
-            <circle cx="30" cy="22" r="12" fill="#C68642"/><path d="M22 14 Q30 8 38 14" fill="#1C0700"/>
-            <rect x="16" y="34" width="28" height="22" rx="4" fill="#DC2626"/>
-            <rect x="9" y="57" width="11" height="20" rx="3" fill="#374151"/><rect x="20" y="57" width="11" height="20" rx="3" fill="#1F2937"/>
-            <circle cx="90" cy="22" r="12" fill="#C68642"/><path d="M82 14 Q90 8 98 14" fill="#1C0700"/>
-            <rect x="76" y="34" width="28" height="22" rx="4" fill="#059669"/>
-            <rect x="69" y="57" width="11" height="20" rx="3" fill="#374151"/><rect x="80" y="57" width="11" height="20" rx="3" fill="#1F2937"/>
-            <path d="M44 45 Q60 42 76 45" stroke="#78350F" stroke-width="4" stroke-linecap="round" fill="none"/>
-            <rect x="55" y="36" width="10" height="18" rx="3" fill="#F59E0B"/><circle cx="60" cy="36" r="5" fill="#FBBF24"/>
-            <line x1="10" y1="79" x2="110" y2="79" stroke="#166534" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="mc-badge red-badge">MODE 1</div>
-        <div class="mc-title">⚔️ Tarik Tambang</div>
-        <div class="mc-sub">2 Pemain Individu</div>
-        <div class="mc-preview">Jawab 20 soal tercepat dengan waktu 70 detik!</div>
+      <div class="mcard mcard-o" onclick="App.selectMode(1)">
+        <div class="mc-ico">⚔️</div>
+        <div class="mc-bdg mc-bdg-o">MODE 1</div>
+        <div class="mc-title">Rebut Bendera</div>
+        <div class="mc-sub">2 Pemain • Saling berlomba</div>
+        <div class="mc-desc">Jawab soal → karaktermu bergerak merebut bendera! Siapa duluan sampai, menang!</div>
       </div>
-      <div class="mode-card mc-grn" onclick="App.selectMode(2)">
-        <div class="mc-illustration">
-          <svg viewBox="0 0 120 80" fill="none">
-            <ellipse cx="20" cy="75" rx="10" ry="3" fill="rgba(0,0,0,.2)"/>
-            <ellipse cx="36" cy="75" rx="10" ry="3" fill="rgba(0,0,0,.2)"/>
-            <ellipse cx="84" cy="75" rx="10" ry="3" fill="rgba(0,0,0,.2)"/>
-            <ellipse cx="100" cy="75" rx="10" ry="3" fill="rgba(0,0,0,.2)"/>
-            <circle cx="20" cy="20" r="9" fill="#C68642"/><rect x="13" y="30" width="14" height="16" rx="3" fill="#DC2626"/>
-            <rect x="10" y="46" width="8" height="16" rx="2" fill="#374151"/><rect x="19" y="46" width="8" height="16" rx="2" fill="#1F2937"/>
-            <circle cx="36" cy="22" r="9" fill="#D4A07A"/><rect x="29" y="32" width="14" height="16" rx="3" fill="#EF4444"/>
-            <rect x="26" y="48" width="8" height="16" rx="2" fill="#374151"/><rect x="35" y="48" width="8" height="16" rx="2" fill="#1F2937"/>
-            <circle cx="84" cy="20" r="9" fill="#C68642"/><rect x="77" y="30" width="14" height="16" rx="3" fill="#059669"/>
-            <rect x="74" y="46" width="8" height="16" rx="2" fill="#374151"/><rect x="83" y="46" width="8" height="16" rx="2" fill="#1F2937"/>
-            <circle cx="100" cy="22" r="9" fill="#D4A07A"/><rect x="93" y="32" width="14" height="16" rx="3" fill="#16A34A"/>
-            <rect x="90" y="48" width="8" height="16" rx="2" fill="#374151"/><rect x="99" y="48" width="8" height="16" rx="2" fill="#1F2937"/>
-            <path d="M43 40 Q60 37 77 40" stroke="#78350F" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-            <rect x="56" y="32" width="8" height="14" rx="2" fill="#F59E0B"/><circle cx="60" cy="32" r="4" fill="#FBBF24"/>
-            <line x1="4" y1="79" x2="116" y2="79" stroke="#166534" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="mc-badge grn-badge">MODE 2</div>
-        <div class="mc-title">🤝 Tim Battle</div>
-        <div class="mc-sub">2 Tim, Maks. 20 Peserta</div>
-        <div class="mc-preview">Berlomba jawab 20 soal bersama tim!</div>
+      <div class="mcard mcard-n" onclick="App.selectMode(2)">
+        <div class="mc-ico">🤝</div>
+        <div class="mc-bdg mc-bdg-n">MODE 2</div>
+        <div class="mc-title">Tim Battle</div>
+        <div class="mc-sub">2 Tim • Maks 20 peserta/tim</div>
+        <div class="mc-desc">Tim berlomba merebut bendera bersama. Suporter menyemangati dari tepi lapangan!</div>
+      </div>
+      <div class="mcard mcard-c" onclick="App.selectMode(3)">
+        <div class="mc-ico">☕</div>
+        <div class="mc-bdg mc-bdg-c">COZY</div>
+        <div class="mc-title">Cozy Mode</div>
+        <div class="mc-sub">Solo • Tanpa tekanan waktu</div>
+        <div class="mc-desc">Jawab santai semua soal Indonesia. Karakter berjalan menuju bendera step by step!</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- HOW TO PLAY -->
+<!-- ═══ CARA MAIN ═══ -->
 <div id="s-howto" class="screen">
-  <button class="back-btn" onclick="App.go('s-mode')">&#8592; Kembali</button>
+  <button class="back-btn" onclick="App.go('s-mode')">← Kembali</button>
   <div class="howto-wrap">
-    <div class="howto-header">
-      <div class="howto-mode-badge" id="howto-badge">MODE 1</div>
-      <h2 class="howto-title" id="howto-title">Tarik Tambang</h2>
-      <p class="howto-sub" id="howto-sub">2 Pemain Individu</p>
+    <div class="howto-hd">
+      <div class="hw-badge" id="hw-badge">MODE 1</div>
+      <h2 class="hw-title" id="hw-title">Rebut Bendera</h2>
+      <p class="hw-sub" id="hw-sub">2 Pemain Individu</p>
     </div>
-    <div class="howto-steps" id="howto-steps"></div>
-    <button class="btn btn-hero howto-go-btn" onclick="App.go('s-setup')">Siap! Masukkan Nama &#8594;</button>
+    <div class="hw-steps" id="hw-steps"></div>
+    <button class="btn btn-hero hw-go" onclick="App.go('s-setup')">Siap! →</button>
   </div>
 </div>
 
-<!-- SETUP -->
-<div id="s-setup" class="screen">
-  <button class="back-btn" onclick="App.go('s-howto')">&#8592; Kembali</button>
-  <div class="split-screen" id="setup-cols"></div>
-  <button class="btn btn-start" id="setup-go" onclick="App.startFromSetup()">&#9876; MASUK ARENA!</button>
+<!-- ═══ PANDUAN UMUM ═══ -->
+<div id="s-howto-info" class="screen">
+  <button class="back-btn" onclick="App.go('s-home')">← Beranda</button>
+  <div class="howto-wrap">
+    <div class="howto-hd">
+      <div class="hw-badge">📖 PANDUAN</div>
+      <h2 class="hw-title">Cara Bermain</h2>
+      <p class="hw-sub">Baca panduan sebelum bertanding!</p>
+    </div>
+    <div class="hw-steps" id="hw-general-steps"></div>
+    <button class="btn btn-hero hw-go" onclick="App.go('s-mode')">Pilih Mode →</button>
+  </div>
 </div>
 
-<!-- COUNTDOWN -->
-<div id="s-countdown" class="screen s-countdown">
-  <div class="cd-ring"></div>
-  <div class="cd-ring cd-ring2"></div>
+<!-- ═══ SETUP NAMA ═══ -->
+<div id="s-setup" class="screen">
+  <button class="back-btn" onclick="App.go('s-howto')">← Kembali</button>
+  <!-- Setup diisi JS -->
+  <div id="setup-stage" class="setup-stage"></div>
+  <button class="btn btn-start" id="setup-go" onclick="App.setupAction()">Siap! →</button>
+</div>
+
+<!-- ═══ COUNTDOWN ═══ -->
+<div id="s-countdown" class="screen s-cd">
+  <div class="cd-orbit cd-o1"></div>
+  <div class="cd-orbit cd-o2"></div>
+  <div class="cd-orbit cd-o3"></div>
   <p class="cd-top">BERSIAP!</p>
   <div class="cd-num" id="cdn">3</div>
-  <p class="cd-bot">&#127470;&#127465; Semangat!</p>
+  <p class="cd-bot">🇮🇩 Semangat Bertanding!</p>
 </div>
 
-<!-- GAME -->
+<!-- ═══ GAME ═══ -->
 <div id="s-game" class="screen s-game">
-  <div id="arena" class="arena"><canvas id="arena-canvas"></canvas></div>
-  <div class="game-panels" id="game-panels">
+  <!-- Arena header (overlaid on top of arena) -->
+  <div class="arena-header" id="arena-header"></div>
+  <div class="arena-wrap" id="arena-wrap">
+    <canvas id="arena-canvas"></canvas>
+  </div>
+  <div class="gpanels" id="gpanels">
     <div class="gpanel" id="gp-left">
-      <div class="panel-flash" id="pf-left"></div>
-      <div class="gp-head" id="gph-left"></div>
-      <div class="gp-trow"><div class="gp-tbar"><div class="gp-fill" id="gf-left"></div></div><div class="gp-tsec" id="gt-left">70s</div></div>
-      <div class="gp-q" id="gq-left">Memuat soal...</div>
-      <div class="gp-opts" id="go-left"></div>
+      <div class="pflash" id="pfl-left"></div>
+      <div class="gph" id="gph-left"></div>
+      <div class="gtrow">
+        <div class="gtbar"><div class="gtfill" id="gtf-left"></div></div>
+        <div class="gtsec" id="gts-left">70s</div>
+      </div>
+      <div class="gqbox" id="gq-left">Memuat soal…</div>
+      <div class="gopts" id="go-left"></div>
     </div>
-    <div class="game-sep"></div>
+    <div class="gsep"></div>
     <div class="gpanel" id="gp-right">
-      <div class="panel-flash" id="pf-right"></div>
-      <div class="gp-head" id="gph-right"></div>
-      <div class="gp-trow"><div class="gp-tbar"><div class="gp-fill" id="gf-right"></div></div><div class="gp-tsec" id="gt-right">70s</div></div>
-      <div class="gp-q" id="gq-right">Memuat soal...</div>
-      <div class="gp-opts" id="go-right"></div>
+      <div class="pflash" id="pfl-right"></div>
+      <div class="gph" id="gph-right"></div>
+      <div class="gtrow">
+        <div class="gtbar"><div class="gtfill" id="gtf-right"></div></div>
+        <div class="gtsec" id="gts-right">70s</div>
+      </div>
+      <div class="gqbox" id="gq-right">Memuat soal…</div>
+      <div class="gopts" id="go-right"></div>
     </div>
   </div>
 </div>
 
-<!-- WINNER -->
+<!-- ═══ COZY GAME (single panel) ═══ -->
+<div id="s-cozy" class="screen s-game">
+  <div class="arena-header" id="cozy-header"></div>
+  <div class="arena-wrap" id="cozy-arena-wrap">
+    <canvas id="cozy-canvas"></canvas>
+  </div>
+  <div class="cozy-panel" id="cozy-panel">
+    <div class="gph" id="gph-cozy"></div>
+    <div class="gqbox" id="gq-cozy">Memuat soal…</div>
+    <div class="gopts cozy-opts" id="go-cozy"></div>
+  </div>
+</div>
+
+<!-- ═══ WINNER ═══ -->
 <div id="s-winner" class="screen s-winner">
   <canvas id="cf-canvas"></canvas>
-  <div class="winner-body">
-    <div class="w-trophy" id="w-trophy">🏆</div>
-    <div class="w-label" id="w-label">PEMENANG</div>
-    <div class="w-name" id="w-name">—</div>
-    <div class="w-sub" id="w-sub">LUAR BIASA! 🎉</div>
-    <div class="w-scores" id="w-scores"></div>
-    <button class="btn btn-hero" onclick="App.go('s-qlist')">📋 Lihat Daftar Soal</button>
+  <div class="win-body">
+    <div class="win-trophy">🏆</div>
+    <div class="win-lbl">PEMENANG!</div>
+    <div class="win-name" id="win-name">—</div>
+    <div class="win-sub">LUAR BIASA! 🎉</div>
+    <div class="win-scores" id="win-scores"></div>
+    <div class="win-btns">
+      <button class="btn btn-hero" onclick="App.goQList()">📋 Daftar Soal & Waktu</button>
+    </div>
   </div>
 </div>
 
-<!-- QUESTION LIST -->
+<!-- ═══ QUESTION LIST ═══ -->
 <div id="s-qlist" class="screen s-qlist">
-  <div class="qlist-header">
-    <h2 class="qlist-title">📋 Daftar Soal yang Keluar</h2>
-    <p class="qlist-sub" id="qlist-sub">20 soal telah dijawab</p>
+  <div class="ql-header">
+    <h2 class="ql-title">📋 Daftar Soal</h2>
+    <p class="ql-sub" id="ql-sub">Ringkasan pertandingan</p>
   </div>
-  <div class="qlist-scroll" id="qlist-scroll"></div>
-  <div class="qlist-footer">
+  <div class="ql-scroll" id="ql-scroll"></div>
+  <div class="ql-footer">
     <button class="btn btn-primary" onclick="App.goHome()">🏠 Menu Utama</button>
-    <button class="btn btn-glass-dark" onclick="App.rematch()">🔄 Main Lagi</button>
+    <button class="btn btn-glass-d" onclick="App.rematch()">🔄 Main Lagi</button>
   </div>
 </div>
 
