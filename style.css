@@ -17,12 +17,11 @@
   --sh:0 2px 16px rgba(0,0,0,.1);--sh2:0 6px 32px rgba(0,0,0,.16);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{height:100%;overflow:hidden;-webkit-text-size-adjust:none;touch-action:auto;overscroll-behavior:none}
+html{height:100%;overflow:hidden;-webkit-text-size-adjust:none;touch-action:auto}
 body{
   font-family:var(--fb);background:var(--cream);
   width:100vw;height:100dvh;
-  overflow-x:hidden;overflow-y:auto;
-  overscroll-behavior:none;
+  overflow:hidden;
   -webkit-user-select:none;user-select:none;
   -webkit-tap-highlight-color:transparent;
   padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
@@ -34,7 +33,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 
 /* ── SCREENS ── */
 .screen{position:fixed;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .28s ease,transform .28s ease;transform:scale(.97) translateY(6px);background:var(--cream);overflow:hidden}
-.screen.active{opacity:1;pointer-events:all;transform:none}
+.screen.active{opacity:1;pointer-events:auto;transform:none}
 .screen.leaving{opacity:0;transform:scale(1.03) translateY(-6px);pointer-events:none}
 /* Red-white stripe */
 .screen:not(.s-cd):not(.s-game):not(.s-winner):not(.s-qlist)::before,
@@ -80,7 +79,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .atab:hover:not(.active){border-color:var(--red);color:var(--red)}
 .about-panels{flex:1;overflow:hidden;min-height:0;position:relative}
 .about-panel{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .22s}
-.about-panel.active{opacity:1;pointer-events:all}
+.about-panel.active{opacity:1;pointer-events:auto}
 .about-scroll{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y;display:flex;flex-direction:column;gap:.9rem;padding:.3rem .1rem}
 .rule-section{background:#fff;border-radius:14px;padding:clamp(.8rem,1.8vw,1.2rem);border:1.5px solid var(--border);box-shadow:var(--sh)}
 .rule-title{font-family:var(--fh);font-size:clamp(1.05rem,2.5vw,1.3rem);color:var(--red);letter-spacing:1.5px;margin-bottom:.6rem;padding-bottom:.5rem;border-bottom:2px solid var(--red-l)}
