@@ -21,7 +21,7 @@ html{height:100%;overflow:hidden;-webkit-text-size-adjust:none;touch-action:auto
 body{
   font-family:var(--fb);background:var(--cream);
   width:100vw;height:100dvh;
-  overflow:hidden;
+  overflow-x:hidden;overflow-y:auto;
   overscroll-behavior:none;
   -webkit-user-select:none;user-select:none;
   -webkit-tap-highlight-color:transparent;

@@ -1162,35 +1162,7 @@ const App = (() => {
   window.addEventListener('resize',()=>{Arena.resize('arena-cv','arena-wrap');Arena.resize('cozy-cv','cozy-wrap');});
   window.addEventListener('orientationchange',()=>setTimeout(()=>{Arena.resize('arena-cv','arena-wrap');Arena.resize('cozy-cv','cozy-wrap');},180));
 
-  /* ── TOUCH SCROLL (fixed: allow taps, allow pinch-zoom, block only overscroll bounce) ── */
-  let lastY = 0;
-  document.addEventListener('touchstart', e => { lastY = e.touches[0].clientY; }, { passive: true });
-  document.addEventListener('touchmove', e => {
-    // Never block multi-touch (pinch-zoom must work)
-    if (e.touches.length > 1) return;
-
-    const dy = e.touches[0].clientY - lastY;
-    lastY = e.touches[0].clientY;
-
-    // Never block interactive elements — tap jari geser sedikit tidak boleh diblok
-    const tag = e.target.tagName;
-    if (tag === 'BUTTON' || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
-    if (e.target.closest('button,input,textarea,select')) return;
-
-    // Izinkan scroll dalam container yang memang bisa di-scroll
-    const el = e.target.closest('.ql-scroll,.names-grid,.about-scroll,.mlist');
-    if (el) {
-      const atTop = el.scrollTop <= 0;
-      const atBot = el.scrollTop >= el.scrollHeight - el.clientHeight - 1;
-      // Hanya blok jika sudah di ujung atas/bawah (mencegah overscroll bounce)
-      if (dy > 0 && atTop) { e.preventDefault(); return; }
-      if (dy < 0 && atBot) { e.preventDefault(); return; }
-      return; // biarkan scroll berjalan
-    }
-
-    // Blok overscroll/bounce di area lain (canvas, background, dll)
-    e.preventDefault();
-  }, { passive: false });
+  /* ── TOUCH: handled by CSS overscroll-behavior:none — no JS needed ── */
 
   // Init
   Aud.startMusic();
