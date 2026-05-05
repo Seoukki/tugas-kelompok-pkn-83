@@ -8,10 +8,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#DC2626">
 <title>Kuis Battle 🇮🇩</title>
-<link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<audio id="bgm-audio" loop preload="auto" src="./musik.mp3"></audio>
 </head>
 <body>
 
@@ -24,8 +24,13 @@
       <h1 class="home-title">KUIS<br>BATTLE</h1>
       <p class="home-tagline">🇮🇩 Game Kuis Interaktif &bull; Kelompok 4 🇮🇩</p>
       <div class="home-btns">
-        <button class="btn btn-hero" onclick="App.go('s-info')">Mulai Bermain</button>
-        <button class="btn btn-glass" onclick="App.toggleSound()" id="snd-btn">🔊 Suara Aktif</button>
+        <button class="btn btn-hero" onclick="App.go('s-info')">⚔️ Mulai Bermain</button>
+        <button class="btn btn-home-sec" id="resume-btn" onclick="App.resumeGame()" style="display:none">▶ Lanjutkan Game</button>
+        <div class="home-row">
+          <button class="btn btn-glass-sm" onclick="App.go('s-qdb')">📋 Lihat Soal</button>
+          <button class="btn btn-glass-sm" onclick="App.go('s-about')">📖 Tentang</button>
+          <button class="btn btn-glass-sm" onclick="App.toggleSound()" id="snd-btn">🔊 Suara</button>
+        </div>
       </div>
     </div>
   </div>
@@ -63,54 +68,75 @@
   <div class="mode-screen-inner">
     <div class="mode-heading-wrap">
       <h2 class="section-title">Pilih Mode Permainan</h2>
-      <p class="section-sub">Klik mode untuk melihat cara bermain</p>
+      <p class="section-sub">Pilih mode yang sesuai, lalu lihat cara bermain</p>
     </div>
     <div class="mode-cards">
-      <div class="mode-card mc-red" onclick="App.selectMode(1)">
+      <div class="mode-card mc-t1" onclick="App.selectMode(1)">
         <div class="mc-illustration">
           <svg viewBox="0 0 120 80" fill="none">
             <ellipse cx="30" cy="75" rx="16" ry="4" fill="rgba(0,0,0,.2)"/>
             <ellipse cx="90" cy="75" rx="16" ry="4" fill="rgba(0,0,0,.2)"/>
             <circle cx="30" cy="22" r="12" fill="#C68642"/><path d="M22 14 Q30 8 38 14" fill="#1C0700"/>
-            <rect x="16" y="34" width="28" height="22" rx="4" fill="#DC2626"/>
+            <rect x="16" y="34" width="28" height="22" rx="4" fill="#F97316"/>
             <rect x="9" y="57" width="11" height="20" rx="3" fill="#374151"/><rect x="20" y="57" width="11" height="20" rx="3" fill="#1F2937"/>
-            <circle cx="90" cy="22" r="12" fill="#C68642"/><path d="M82 14 Q90 8 98 14" fill="#1C0700"/>
-            <rect x="76" y="34" width="28" height="22" rx="4" fill="#059669"/>
+            <circle cx="90" cy="22" r="12" fill="#D4A07A"/><path d="M82 14 Q90 8 98 14" fill="#1C0700"/>
+            <rect x="76" y="34" width="28" height="22" rx="4" fill="#1E40AF"/>
             <rect x="69" y="57" width="11" height="20" rx="3" fill="#374151"/><rect x="80" y="57" width="11" height="20" rx="3" fill="#1F2937"/>
-            <path d="M44 45 Q60 42 76 45" stroke="#78350F" stroke-width="4" stroke-linecap="round" fill="none"/>
-            <rect x="55" y="36" width="10" height="18" rx="3" fill="#F59E0B"/><circle cx="60" cy="36" r="5" fill="#FBBF24"/>
+            <path d="M44 45 Q60 42 76 45" stroke="#78350F" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <rect x="55" y="36" width="10" height="18" rx="3" fill="#DC2626"/><circle cx="60" cy="36" r="5" fill="#FBBF24"/>
             <line x1="10" y1="79" x2="110" y2="79" stroke="#166534" stroke-width="3" stroke-linecap="round"/>
           </svg>
         </div>
-        <div class="mc-badge red-badge">MODE 1</div>
+        <div class="mc-badge t1-badge">MODE 1</div>
         <div class="mc-title">⚔️ Tarik Tambang</div>
         <div class="mc-sub">2 Pemain Individu</div>
-        <div class="mc-preview">Jawab 20 soal tercepat dengan waktu 70 detik!</div>
+        <div class="mc-preview">Jawab 20 soal, lawan lawan di arena! Waktu 70 detik — siapa cepat dia menang.</div>
       </div>
-      <div class="mode-card mc-grn" onclick="App.selectMode(2)">
+      <div class="mode-card mc-t2" onclick="App.selectMode(2)">
         <div class="mc-illustration">
           <svg viewBox="0 0 120 80" fill="none">
-            <ellipse cx="20" cy="75" rx="10" ry="3" fill="rgba(0,0,0,.2)"/>
-            <ellipse cx="36" cy="75" rx="10" ry="3" fill="rgba(0,0,0,.2)"/>
-            <ellipse cx="84" cy="75" rx="10" ry="3" fill="rgba(0,0,0,.2)"/>
-            <ellipse cx="100" cy="75" rx="10" ry="3" fill="rgba(0,0,0,.2)"/>
-            <circle cx="20" cy="20" r="9" fill="#C68642"/><rect x="13" y="30" width="14" height="16" rx="3" fill="#DC2626"/>
+            <circle cx="20" cy="20" r="9" fill="#C68642"/><rect x="13" y="30" width="14" height="16" rx="3" fill="#F97316"/>
             <rect x="10" y="46" width="8" height="16" rx="2" fill="#374151"/><rect x="19" y="46" width="8" height="16" rx="2" fill="#1F2937"/>
-            <circle cx="36" cy="22" r="9" fill="#D4A07A"/><rect x="29" y="32" width="14" height="16" rx="3" fill="#EF4444"/>
+            <circle cx="36" cy="22" r="9" fill="#D4A07A"/><rect x="29" y="32" width="14" height="16" rx="3" fill="#FB923C"/>
             <rect x="26" y="48" width="8" height="16" rx="2" fill="#374151"/><rect x="35" y="48" width="8" height="16" rx="2" fill="#1F2937"/>
-            <circle cx="84" cy="20" r="9" fill="#C68642"/><rect x="77" y="30" width="14" height="16" rx="3" fill="#059669"/>
+            <circle cx="84" cy="20" r="9" fill="#C68642"/><rect x="77" y="30" width="14" height="16" rx="3" fill="#1E40AF"/>
             <rect x="74" y="46" width="8" height="16" rx="2" fill="#374151"/><rect x="83" y="46" width="8" height="16" rx="2" fill="#1F2937"/>
-            <circle cx="100" cy="22" r="9" fill="#D4A07A"/><rect x="93" y="32" width="14" height="16" rx="3" fill="#16A34A"/>
+            <circle cx="100" cy="22" r="9" fill="#D4A07A"/><rect x="93" y="32" width="14" height="16" rx="3" fill="#3B82F6"/>
             <rect x="90" y="48" width="8" height="16" rx="2" fill="#374151"/><rect x="99" y="48" width="8" height="16" rx="2" fill="#1F2937"/>
             <path d="M43 40 Q60 37 77 40" stroke="#78350F" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-            <rect x="56" y="32" width="8" height="14" rx="2" fill="#F59E0B"/><circle cx="60" cy="32" r="4" fill="#FBBF24"/>
+            <rect x="56" y="32" width="8" height="14" rx="2" fill="#DC2626"/><circle cx="60" cy="32" r="4" fill="#FBBF24"/>
             <line x1="4" y1="79" x2="116" y2="79" stroke="#166534" stroke-width="3" stroke-linecap="round"/>
           </svg>
         </div>
-        <div class="mc-badge grn-badge">MODE 2</div>
+        <div class="mc-badge t2-badge">MODE 2</div>
         <div class="mc-title">🤝 Tim Battle</div>
         <div class="mc-sub">2 Tim, Maks. 20 Peserta</div>
-        <div class="mc-preview">Berlomba jawab 20 soal bersama tim!</div>
+        <div class="mc-preview">Berlomba bersama tim! Oranye vs Biru — siapa tim terkuat?</div>
+      </div>
+      <div class="mode-card mc-cozy" onclick="App.selectMode(3)">
+        <div class="mc-illustration">
+          <svg viewBox="0 0 120 80" fill="none">
+            <rect x="0" y="40" width="120" height="40" rx="4" fill="#86EFAC"/>
+            <rect x="5" y="20" width="12" height="25" rx="3" fill="#A3E635" opacity=".7"/>
+            <rect x="5" y="14" width="12" height="8" fill="#4ADE80" opacity=".6"/>
+            <rect x="100" y="22" width="12" height="23" rx="3" fill="#A3E635" opacity=".7"/>
+            <rect x="100" y="16" width="12" height="8" fill="#4ADE80" opacity=".6"/>
+            <rect x="10" y="40" width="100" height="6" rx="3" fill="#D4A96A"/>
+            <circle cx="60" cy="30" r="9" fill="#C68642"/>
+            <path d="M52 23 Q60 17 68 23" fill="#1C0700"/>
+            <rect x="53" y="39" width="14" height="13" rx="3" fill="#10B981"/>
+            <rect x="51" y="52" width="8" height="12" rx="2" fill="#374151"/>
+            <rect x="60" y="52" width="8" height="12" rx="2" fill="#1F2937"/>
+            <rect x="115" y="36" width="5" height="20" rx="2" fill="#78350F"/>
+            <rect x="115" y="36" width="12" height="7" fill="#DC2626"/>
+            <rect x="115" y="43" width="12" height="7" fill="#fff"/>
+            <text x="60" y="78" font-size="8" fill="#166534" text-anchor="middle" font-weight="bold">FINISH</text>
+          </svg>
+        </div>
+        <div class="mc-badge cozy-badge">MODE 3</div>
+        <div class="mc-title">🌿 Cozy Mode</div>
+        <div class="mc-sub">Solo Player — Santai</div>
+        <div class="mc-preview">Tanpa timer, tanpa tekanan. Jalan santai ke garis finish sambil belajar!</div>
       </div>
     </div>
   </div>
@@ -126,7 +152,7 @@
       <p class="howto-sub" id="howto-sub">2 Pemain Individu</p>
     </div>
     <div class="howto-steps" id="howto-steps"></div>
-    <button class="btn btn-hero howto-go-btn" onclick="App.go('s-setup')">Siap! Masukkan Nama &#8594;</button>
+    <button class="btn btn-hero howto-go-btn">Siap! Masukkan Nama &#8594;</button>
   </div>
 </div>
 
@@ -134,7 +160,7 @@
 <div id="s-setup" class="screen">
   <button class="back-btn" onclick="App.go('s-howto')">&#8592; Kembali</button>
   <div class="split-screen" id="setup-cols"></div>
-  <button class="btn btn-start" id="setup-go" onclick="App.startFromSetup()">&#9876; MASUK ARENA!</button>
+  <button class="btn btn-start" id="setup-go" style="display:none" onclick="App.startFromSetup()">&#9876; MASUK ARENA!</button>
 </div>
 
 <!-- COUNTDOWN -->
@@ -148,6 +174,24 @@
 
 <!-- GAME -->
 <div id="s-game" class="screen s-game">
+  <!-- Arena Header -->
+  <div id="arena-hbar" class="arena-hbar" style="display:none">
+    <div class="ah-team ah-left">
+      <span class="ah-badge ah-t1">🟠</span>
+      <span class="ahn" id="ahn-left">–</span>
+      <span class="ah-score" id="ahs-left">0</span>
+      <span class="ah-time t1c" id="aht-left">–</span>
+    </div>
+    <div class="ah-center-wrap">
+      <span id="ah-center" class="ah-center-lbl">⚔️</span>
+    </div>
+    <div class="ah-team ah-right">
+      <span class="ah-time t2c" id="aht-right">–</span>
+      <span class="ah-score" id="ahs-right">0</span>
+      <span class="ahn" id="ahn-right">–</span>
+      <span class="ah-badge ah-t2">🔵</span>
+    </div>
+  </div>
   <div id="arena" class="arena"><canvas id="arena-canvas"></canvas></div>
   <div class="game-panels" id="game-panels">
     <div class="gpanel" id="gp-left">
@@ -177,15 +221,19 @@
     <div class="w-name" id="w-name">—</div>
     <div class="w-sub" id="w-sub">LUAR BIASA! 🎉</div>
     <div class="w-scores" id="w-scores"></div>
-    <button class="btn btn-hero" onclick="App.go('s-qlist')">📋 Lihat Daftar Soal</button>
+    <div class="winner-btns">
+      <button class="btn btn-hero">📋 Lihat Soal</button>
+      <button class="btn btn-glass-dark" onclick="App.rematch()">🔄 Main Lagi</button>
+      <button class="btn btn-glass-dark" onclick="App.goHome()">🏠 Menu Utama</button>
+    </div>
   </div>
 </div>
 
-<!-- QUESTION LIST -->
+<!-- QUESTION LIST (played) -->
 <div id="s-qlist" class="screen s-qlist">
   <div class="qlist-header">
     <h2 class="qlist-title">📋 Daftar Soal yang Keluar</h2>
-    <p class="qlist-sub" id="qlist-sub">20 soal telah dijawab</p>
+    <p class="qlist-sub" id="qlist-sub">20 soal telah dimainkan</p>
   </div>
   <div class="qlist-scroll" id="qlist-scroll"></div>
   <div class="qlist-footer">
@@ -194,6 +242,117 @@
   </div>
 </div>
 
+<!-- QUESTION DATABASE (all) -->
+<div id="s-qdb" class="screen s-qlist">
+  <div class="qlist-header">
+    <button class="back-btn" style="position:relative;top:0;left:0;margin-bottom:8px" onclick="App.go('s-home')">&#8592; Kembali</button>
+    <h2 class="qlist-title">📚 Bank Soal Lengkap</h2>
+    <p class="qlist-sub">21 soal Pengetahuan Umum Indonesia beserta jawaban &amp; penjelasan</p>
+  </div>
+  <div class="qlist-scroll" id="qdb-scroll"></div>
+  <div class="qlist-footer">
+    <button class="btn btn-primary" onclick="App.go('s-home')">🏠 Kembali ke Menu</button>
+  </div>
+</div>
+
+<!-- ABOUT / CARA PEMBUATAN -->
+<div id="s-about" class="screen s-qlist">
+  <div class="qlist-header">
+    <button class="back-btn" style="position:relative;top:0;left:0;margin-bottom:8px" onclick="App.go('s-home')">&#8592; Kembali</button>
+    <h2 class="qlist-title">📖 Tentang &amp; Aturan Permainan</h2>
+    <p class="qlist-sub">Cara pembuatan, aturan, dan detail teknis game</p>
+  </div>
+  <div class="qlist-scroll about-scroll">
+    <div class="about-section">
+      <div class="about-icon">🎮</div>
+      <h3 class="about-h">Tentang Game</h3>
+      <p class="about-p">Kuis Battle adalah game kuis interaktif berbasis web yang dibuat oleh <strong>Kelompok 4</strong> untuk meningkatkan pemahaman Pengetahuan Umum Indonesia. Game ini berjalan sepenuhnya di browser tanpa instalasi apapun.</p>
+    </div>
+    <div class="about-section">
+      <div class="about-icon">🛠️</div>
+      <h3 class="about-h">Cara Pembuatan</h3>
+      <p class="about-p">Game ini dibuat menggunakan teknologi web murni:</p>
+      <ul class="about-list">
+        <li><strong>HTML5</strong> — Struktur halaman dan elemen UI</li>
+        <li><strong>CSS3</strong> — Animasi, layout, dan tampilan visual dengan CSS custom properties</li>
+        <li><strong>JavaScript (Vanilla)</strong> — Logika game, canvas rendering, audio engine</li>
+        <li><strong>Canvas API</strong> — Animasi arena, karakter, tali, dan efek visual real-time</li>
+        <li><strong>Web Audio API</strong> — Efek suara synthesizer tanpa file audio eksternal</li>
+        <li><strong>Google Fonts</strong> — Font Bebas Neue (display) dan Plus Jakarta Sans (body)</li>
+      </ul>
+    </div>
+    <div class="about-section">
+      <div class="about-icon">📏</div>
+      <h3 class="about-h">Aturan Mode 1 — Tarik Tambang</h3>
+      <ul class="about-list">
+        <li>2 pemain bermain bersamaan di layar yang sama (split screen)</li>
+        <li>Setiap pemain mendapat <strong>70 detik</strong> untuk menjawab 20 soal</li>
+        <li>Jawaban <strong>benar</strong>: waktu berkurang 3 detik, karakter maju</li>
+        <li>Jawaban <strong>salah</strong>: waktu berkurang 5 detik, soal masuk antrian lagi</li>
+        <li>Menang jika menyelesaikan semua 20 soal lebih dulu, atau lawan kehabisan waktu</li>
+        <li>Karakter yang kalah akan jatuh secara dramatis di arena!</li>
+      </ul>
+    </div>
+    <div class="about-section">
+      <div class="about-icon">🤝</div>
+      <h3 class="about-h">Aturan Mode 2 — Tim Battle</h3>
+      <ul class="about-list">
+        <li>2 tim (max 20 orang per tim) bertanding bersamaan</li>
+        <li>Soal dijawab bergantian oleh anggota tim (giliran otomatis)</li>
+        <li>Setiap giliran pemain mendapat <strong>70 detik</strong></li>
+        <li>Sistem poin sama dengan Mode 1 (benar -3s, salah -5s)</li>
+        <li>Tim Oranye vs Tim Biru — nama tim tampil di arena</li>
+        <li>Tim pertama selesaikan 20 soal = MENANG!</li>
+      </ul>
+    </div>
+    <div class="about-section">
+      <div class="about-icon">🌿</div>
+      <h3 class="about-h">Aturan Mode 3 — Cozy Mode</h3>
+      <ul class="about-list">
+        <li>Solo player, tanpa timer, tanpa tekanan</li>
+        <li>Jawab 20 soal, karakter berjalan menuju garis finish</li>
+        <li>Setiap jawaban (benar/salah) menampilkan <strong>penjelasan edukatif</strong></li>
+        <li>Tidak ada hukuman — semua jawaban memajukan permainan</li>
+        <li>Cocok untuk belajar santai dan memahami materi</li>
+      </ul>
+    </div>
+    <div class="about-section">
+      <div class="about-icon">💡</div>
+      <h3 class="about-h">Fitur Khusus</h3>
+      <ul class="about-list">
+        <li>🎵 Musik latar (musik.mp3) dengan volume otomatis saat ada efek suara</li>
+        <li>▶ Tombol Resume — lanjutkan game yang tertinggal</li>
+        <li>📋 Lihat semua soal beserta penjelasan setelah permainan</li>
+        <li>🎭 Karakter animasi real-time dengan ekspresi berbeda</li>
+        <li>👥 Animasi penonton yang bersorak saat tim memimpin</li>
+        <li>💥 Efek jatuh dramatis bagi pihak yang kalah</li>
+        <li>🌐 Responsive — bisa dimainkan di HP maupun laptop</li>
+      </ul>
+    </div>
+  </div>
+  <div class="qlist-footer">
+    <button class="btn btn-primary" onclick="App.go('s-home')">🏠 Kembali ke Menu</button>
+  </div>
+</div>
+
 <script src="app.js"></script>
+<script>
+// Init QDB screen on load
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    if(typeof App!=='undefined'&&App.goQDB)App.goQDB();
+  },200);
+  // patch — build qdb on screen open
+  document.getElementById('s-qdb').addEventListener('transitionend',()=>{
+    if(document.getElementById('s-qdb').classList.contains('active')){
+      if(typeof App!=='undefined')App.goQDB();
+    }
+  });
+  // BGM: try to play on first interaction
+  document.addEventListener('pointerdown',()=>{
+    const a=document.getElementById('bgm-audio');if(a&&a.paused)a.play().catch(()=>{});
+  },{once:true});
+});
+</script>
 </body>
 </html>
