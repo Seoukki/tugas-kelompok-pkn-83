@@ -1170,3 +1170,4 @@ const App = (() => {
 
   return { go, toggleSound, switchTab, selectMode, setCount, renderNI, setupAction, goHome, rematch, goQList, tryResume };
 })();
+window.App = App;

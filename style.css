@@ -63,8 +63,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 #s-home{background:var(--cream)}
 .home-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .home-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:clamp(.65vh,1.4vh,1.7vh);padding:20px 16px}
-.home-garuda{width:clamp(60px,8.5vw,90px);height:clamp(60px,8.5vw,90px);filter:drop-shadow(0 4px 16px rgba(220,38,38,.4))}
-#garuda-cv{width:100%;height:100%}
+.home-garuda{width:clamp(60px,8.5vw,90px);height:clamp(60px,8.5vw,90px);filter:drop-shadow(0 4px 16px rgba(220,38,38,.4));pointer-events:none}
+#garuda-cv{width:100%;height:100%;pointer-events:none}
 .home-title{font-family:var(--fh);font-size:clamp(4.5rem,15vw,11rem);line-height:.78;text-align:center;letter-spacing:5px;color:var(--red);text-shadow:4px 4px 0 rgba(153,27,27,.15)}
 .home-sub{font-size:clamp(.68rem,1.6vw,.86rem);color:var(--gray);font-weight:600;letter-spacing:1.5px;text-align:center}
 .home-btns{display:flex;flex-direction:column;align-items:center;gap:.65rem;margin-top:.3vh}
